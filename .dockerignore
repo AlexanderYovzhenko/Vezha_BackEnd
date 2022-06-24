@@ -1,0 +1,14 @@
+node_modules
+build
+dist
+.idea
+.vscode
+.gitignore
+.github
+pg_data
+database
+logs
+.eslintrc.json
+.eslintignore
+.env
+MyProject

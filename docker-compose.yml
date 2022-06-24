@@ -1,0 +1,69 @@
+version: '3.0'
+services:
+  postgres:
+    env_file: 
+      - .docker.env
+    image: 'postgres:${POSTGRES_VERSION}'
+    container_name: postgres
+    build: 
+      context: ./database/.
+      args:
+        - POSTGRES_VERSION=${POSTGRES_VERSION}
+    deploy:
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        max_attempts: 5
+        window: 120s 
+    networks:
+      - my_net
+    ports:
+      - ${POSTGRES_PORT}:${POSTGRES_PORT}
+    environment:
+      - POSTGRES_HOST_AUTH_METHOD=trust
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - POSTGRES_DB=${POSTGRES_DB}
+      - POSTGRES_PORT=${POSTGRES_PORT}
+      - POSTRGES_HOST=${POSTGRES_HOST}
+      - POSTGRES_VERSION=${POSTGRES_VERSION}
+    volumes:
+      - pg_data:/var/lib/postgresql/data/
+  app:
+    env_file: 
+      - .docker.env
+    image: app
+    container_name: app
+    build:
+      context: .
+      args: 
+        - PORT=${PORT}
+        - NODE_VERSION=${NODE_VERSION}
+    tty: true
+    command: npm run "start"
+    networks:
+      - my_net
+    ports:
+      - ${PORT}:${PORT}
+    environment:
+      - PORT=${PORT}
+      - NODE_VERSION=${NODE_VERSION}
+    volumes:
+      - logs:/usr/src/app/logs
+      - ./logs/all.log:/usr/src/app/logs/all.log
+      - ./logs/errors.log:/usr/src/app/logs/errors.log
+      - ./src/:/usr/src/app/src 
+    deploy:
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        max_attempts: 5
+        window: 120s 
+    depends_on:
+      - postgres
+volumes:
+  pg_data:
+  logs:
+networks:
+  my_net:
+    driver: bridge
