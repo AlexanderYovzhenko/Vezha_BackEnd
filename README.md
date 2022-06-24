@@ -1,8 +1,8 @@
 <p align="center">
-  <a href="https://goldenmanbel.github.io/project-management-app/" style="text-decoration: none;" target="blank"><h1 style="text-align: center; font-size: 100px;">VEZHA</h1></a>
+  <a href="https://goldenmanbel.github.io/project-management-app/" target="blank"><h1 align="center" size="100px">VEZHA</h1></a>
 </p>
 <p align="center"> 
-  <a href="http://nestjs.com/" style="text-decoration: none;" target="blank"><img src="https://nestjs.com/img/logo_text.svg" width="320" alt="Nest Logo" /></a>
+  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo_text.svg" width="320" alt="Nest Logo" /></a>
 </p>
 
 ## Description
