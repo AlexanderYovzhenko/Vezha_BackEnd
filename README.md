@@ -100,7 +100,7 @@ git checkout nestJS
 ## Installing NPM modules
 
 ```bash
-npm install
+npm ci
 ```
 
 ## Running application in docker
