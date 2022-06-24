@@ -73,13 +73,7 @@ Vezha - project manager app server!
 ## Downloading
 
 ```bash
-git clone https://github.com/GoldenManBel/nodejs2021Q4-service.git
-```
-
-## Switch branch
-
-```bash
-git checkout nestJS
+git clone https://github.com/GoldenManBel/Vezha_BackEnd.git
 ```
 
 ## Installing NPM modules
